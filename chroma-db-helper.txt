@@ -1,0 +1,15 @@
+# Install chroma CLI
+- https://docs.trychroma.com/docs/cli/install
+- Add Chroma.exe in window path
+- run chroma as server: chroma run --path ./chroma_db
+Chroma service will be available at http://localhost:8000
+
+# chromadb-admin
+- Checkout https://github.com/flanker/chromadb-admin
+- Open Powershell at project root.
+- install next: npm install next react react-dom
+- install packges: npm install
+- Run Chorm-admin: npm run dev
+UI will be available at http://localhost:3001
+
+Note: hromadb-admin docker is not running in windows pc.

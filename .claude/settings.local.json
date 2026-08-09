@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(& \"D:\\\\mylab\\\\codescribe\\\\backend\\\\.venv\\\\Scripts\\\\uvicorn.exe\" --version 2>&1)"
+    ]
+  }
+}
