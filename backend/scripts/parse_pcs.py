@@ -3,13 +3,17 @@
 Format per line:  CCCCCCC Description text here
 """
 
+import os
+import sys
 from pathlib import Path
 
-# .resolve() converts __file__ to absolute before walking up,
-# so this works regardless of cwd or how Python sets __file__.
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
+from app.config import settings
+
 # scripts/parse_pcs.py -> scripts/ -> backend/ -> codescribe/
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-ICD_FILE = _PROJECT_ROOT / "source files" / "icd10pcs_codes_2027.txt"
+ICD_FILE = _PROJECT_ROOT / "source files" / settings.ICD_SOURCE_FILENAME
 
 
 def parse_codes(filepath: Path = ICD_FILE) -> list[dict]:

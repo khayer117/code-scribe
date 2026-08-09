@@ -4,7 +4,7 @@ An AI-assisted ICD-10-PCS procedure coding tool. Paste a doctor's clinical note 
 
 > [!NOTE]
 > This project is built on **publicly available data from the Centers for Medicare & Medicaid Services (CMS)**.
-> The ICD-10-PCS 2027 code set is published annually by CMS and is free to use with no licensing restrictions.
+> The ICD-10-PCS code set is published annually by CMS and is free to use with no licensing restrictions.
 > Source files can be downloaded from the [CMS ICD-10 code files page](https://www.cms.gov/medicare/coding-billing/icd-10-codes).
 
 ---
@@ -110,15 +110,9 @@ ollama serve
 ollama pull llama3.1:8b
 ```
 
-### 2 — Extract source data
+### 2 — Backend setup
 
-Extract `icd10pcs_codes_2027.zip` (repository root) into the `source files/` folder before seeding ChromaDB:
-
-```bash
-unzip icd10pcs_codes_2027.zip -d "source files"
-```
-
-### 3 — Backend setup
+> **Note:** `icd10pcs_codes_2027.txt` is downloaded automatically from CMS the first time `seed_chroma.py` runs. No manual download needed. The URL is configurable via `CMS_SOURCE_URL` in `backend/.env`.
 
 ```powershell
 cd backend
@@ -132,7 +126,7 @@ pip install -r requirements.txt
 # Create the database schema
 alembic upgrade head
 
-# Seed ChromaDB — embeds all ~78k ICD-10-PCS codes (runs once, ~30–60 min on CPU)
+# Seed ChromaDB — downloads source file from CMS, embeds all ~78k codes (runs once, ~30–60 min on CPU)
 python scripts/seed_chroma.py
 
 # Start the API server
@@ -142,7 +136,7 @@ uvicorn app.main:app --reload
 
 Health check: `GET http://localhost:8000/api/health` — `"ready": true` means seeding is complete.
 
-### 4 — Frontend setup
+### 3 — Frontend setup
 
 ```bash
 cd frontend

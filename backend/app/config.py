@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     CHROMA_COLLECTION: str = "icd10pcs_codes"
     TOP_K_RESULTS: int = 10
     RERANK_CANDIDATES: int = 20
+    CMS_SOURCE_URL: str = "https://www.cms.gov/files/zip/2027-icd-10-pcs-codes-file.zip"
+    ICD_SOURCE_FILENAME: str = "icd10pcs_codes_2027.txt"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

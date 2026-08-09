@@ -12,11 +12,7 @@ frontend/              # React + Vite app
 
 ## Source data setup
 
-Extract `icd10pcs_codes_2027.zip` (repository root) into the `source files/` folder before seeding ChromaDB:
-
-```bash
-unzip icd10pcs_codes_2027.zip -d "source files"
-```
+The source file (`icd10pcs_codes_2027.txt`) is downloaded automatically from CMS when `seed_chroma.py` runs. If the file already exists in `source files/`, the download is skipped. The URL is configured via `CMS_SOURCE_URL` in `backend/.env` (or `app/config.py`).
 
 ## Common commands
 
@@ -29,7 +25,7 @@ powershell -ExecutionPolicy Bypass # Windows PowerShell
 # source .venv/bin/activate       # macOS / Linux
 pip install -r requirements.txt
 alembic upgrade head
-python scripts/seed_chroma.py   # one-time; embeds ~78k codes into ChromaDB (~30-60 min on CPU)
+python scripts/seed_chroma.py   # one-time; downloads source from CMS + embeds ~78k codes (~30-60 min on CPU)
 
 # Start backend (requires Ollama running separately)
 uvicorn app.main:app --reload
