@@ -1,0 +1,6 @@
+interface:
+  display_name: "Code Scribe"
+  short_description: "Repo-specific patterns and workflows for code-scribe"
+  default_prompt: "Use the code-scribe repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
